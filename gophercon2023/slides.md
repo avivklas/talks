@@ -13,7 +13,8 @@ class:
 - Working with assumptions is bad for you
 - Reporting allocations will help you catch the big fishes
 
-![](./benchmark.png)
+![bg:50%](./benchmark.png)
+
 ---
 
 ## The charm of GO's `io` Package 
