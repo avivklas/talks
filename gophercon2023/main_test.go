@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"github.com/brianvoe/gofakeit/v6"
-	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -18,7 +17,7 @@ func Benchmark_buffers(b *testing.B) {
 	if err != nil {
 		b.Fatal(err)
 	}
-	searchFor := "bird"
+	searchFor := "fast"
 	expected := strings.Count(input, searchFor)
 	b.Log("expected", file, expected, len(input))
 
@@ -33,37 +32,17 @@ func Benchmark_buffers(b *testing.B) {
 		b.ResetTimer()
 		b.ReportAllocs()
 
-		var (
-			total int
-			chunk, line []byte
-			isPrefix    bool
-			err         error
-		)
+		var total int
 		for i := 0; i < b.N; i++ {
 			f.Seek(0, 0)
-			br := bufio.NewReader(f)
+			scanner := bufio.NewScanner(f)
 			total = 0
-			isPrefix = true
-			line = line[:0]
-			err = nil
-			for {
-				for isPrefix && err == nil {
-					chunk, isPrefix, err = br.ReadLine()
-					line = append(line, chunk...)
-				}
-
-				if err != nil || len(line) == 0 {
-					break
-				}
-
-				total += bytes.Count(line, []byte(searchFor))
-
-				line = line[:0]
-				isPrefix = true
+			for scanner.Scan() {
+				total += strings.Count(scanner.Text(), searchFor)
 			}
 
-			if err != nil && err != io.EOF {
-				b.Fatal(err)
+			if scanner.Err() != nil {
+				b.Fatal(scanner.Err())
 			}
 			if total != expected {
 				b.Fatal(total, expected)
@@ -74,7 +53,7 @@ func Benchmark_buffers(b *testing.B) {
 	b.Run("with own buffer", func(b *testing.B) {
 		b.ResetTimer()
 		b.ReportAllocs()
-		
+
 		var total int
 		for i := 0; i < b.N; i++ {
 			f.Seek(0, 0)
@@ -84,8 +63,7 @@ func Benchmark_buffers(b *testing.B) {
 				n, count int
 			)
 			total = 0
-			for err == nil {
-				n, err = f.Read(buf)
+			for ; err == nil; n, err = f.Read(buf) {
 				count = bytes.Count(buf[:n], []byte(searchFor))
 				total += count
 				buf = buf[:]
@@ -95,4 +73,9 @@ func Benchmark_buffers(b *testing.B) {
 			}
 		}
 	})
+}
+func init() {
+	for err := 1; err > 0; err = 1 + 1 {
+
+	}
 }

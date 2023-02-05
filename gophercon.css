@@ -1,0 +1,308 @@
+@charset "UTF-8";
+/*!
+ * @auto-scaling true
+ * @size 4:3 960px 720px
+ * @size 16:9 1280px 720px
+ */
+@import url("https://fonts.googleapis.com/css?family=Lato:400,900|Roboto+Mono:400,700");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/base16/summerfruit-light.min.css");
+
+svg[data-marp-fitting='svg'] {
+    max-height: 580px; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0.5em 0 0 0; }
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong,
+h5 strong,
+h6 strong {
+    font-weight: inherit; }
+
+h1 {
+    font-size: 1.8em; }
+
+h2 {
+    font-size: 1.5em; }
+
+h3 {
+    font-size: 1.3em; }
+
+h4 {
+    font-size: 1.1em; }
+
+h5 {
+    font-size: 1em; }
+
+h6 {
+    font-size: 0.9em; }
+
+p,
+blockquote {
+    margin: 1em 0 0 0; }
+
+ul > li,
+ol > li {
+    margin: 0.3em 0 0 0; }
+ul > li > p,
+ol > li > p {
+    margin: 0.6em 0 0 0; }
+
+blockquote {
+    margin: 1em 0 0 0;
+    padding: 0 1em;
+    position: relative; }
+blockquote::after, blockquote::before {
+    content: '“';
+    display: block;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    position: absolute; }
+blockquote::before {
+    top: 0;
+    left: 0; }
+blockquote::after {
+    right: 0;
+    bottom: 0;
+    transform: rotate(180deg); }
+blockquote > *:first-child {
+    margin-top: 0; }
+
+mark {
+    background: transparent; }
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 1em 0 0 0; }
+table th,
+table td {
+    padding: 0.2em 0.4em;
+    border-width: 1px;
+    border-style: solid; }
+
+section {
+    background-image: linear-gradient(135deg, rgba(136, 136, 136, 0), rgba(136, 136, 136, 0.02) 50%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.05));
+    font-size: 28px;
+    font-family: '源真ゴシック', 'ヒラギノ角ゴ Pro W3', 'Lato', 'Avenir Next', 'Avenir', 'Trebuchet MS', 'Segoe UI', sans-serif;
+    line-height: 1.35;
+    letter-spacing: 1.25px;
+    padding: 60px;
+    width: 960px;
+    height: 720px;
+    color: #465A65;
+    background-color: #FFF2DD; }
+section > *:first-child,
+section > header:first-child + * {
+    margin-top: 0; }
+section a,
+section mark {
+    color: #465A65; }
+
+section h1 strong,
+section h2 strong,
+section h3 strong,
+section h4 strong,
+section h5 strong,
+section h6 strong {
+    color: #465A65; }
+section h1 img,
+section h2 img,
+section h3 img,
+section h4 img,
+section h5 img,
+section h6 img {
+    display: block;
+    margin: auto; }
+
+img[alt~="bottom"] {
+    display: block;
+    margin: 0 auto;
+}
+section header,
+section footer,
+section section::after,
+section blockquote::before,
+section blockquote::after {
+    color: #6b787d; }
+section table th,
+section table td {
+    border-color: #465A65; }
+section table thead th {
+    background: #465A65;
+    color: #FFF2DD; }
+section table tbody > tr:nth-child(odd) td,
+section table tbody > tr:nth-child(odd) th {
+    background: rgba(70, 90, 101, 0.1); }
+
+section {
+    color: #FFF2DD;
+    background-color: #00ADD8; }
+section a,
+section mark {
+    color: #465A65; }
+
+section h1 strong,
+section h2 strong,
+section h3 strong,
+section h4 strong,
+section h5 strong,
+section h6 strong {
+    color: #465A65; }
+section h1 img,
+section h2 img,
+section h3 img,
+section h4 img,
+section h5 img,
+section h6 img {
+    display: block;
+    margin: auto; }
+
+section header,
+section footer,
+section section::after,
+section blockquote::before,
+section blockquote::after {
+    color: #cce7db; }
+section table th,
+section table td {
+    border-color: #FFF2DD; }
+section table thead th {
+    background: #FFF2DD;
+    color: #00ADD8; }
+section table tbody > tr:nth-child(odd) td,
+section table tbody > tr:nth-child(odd) th {
+    background: rgba(255, 242, 221, 0.1); }
+section.lead {
+    color: #FFF2DD;
+    background-color: #00ADD8;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center; }
+section.lead a,
+section.lead mark {
+    color: #465A65; }
+
+section.lead h1 strong,
+section.lead h2 strong,
+section.lead h3 strong,
+section.lead h4 strong,
+section.lead h5 strong,
+section.lead h6 strong {
+    color: #465A65; }
+section.lead h1 img,
+section.lead h2 img,
+section.lead h3 img,
+section.lead h4 img,
+section.lead h5 img,
+section.lead h6 img {
+    display: block;
+    margin: auto; }
+
+section.lead header,
+section.lead footer,
+section.lead section::after,
+section.lead blockquote::before,
+section.lead blockquote::after {
+    color: #cce7db; }
+section.lead table th,
+section.lead table td {
+    border-color: #FFF2DD; }
+section.lead table thead th {
+    background: #FFF2DD;
+    color: #00ADD8; }
+section.lead table tbody > tr:nth-child(odd) td,
+section.lead table tbody > tr:nth-child(odd) th {
+    background: rgba(255, 242, 221, 0.1); }
+section.lead h1,
+section.lead h2,
+section.lead h3,
+section.lead h4,
+section.lead h5,
+section.lead h6 {
+    text-align: center; }
+section.lead h1 svg[data-marp-fitting='svg'],
+section.lead h2 svg[data-marp-fitting='svg'],
+section.lead h3 svg[data-marp-fitting='svg'],
+section.lead h4 svg[data-marp-fitting='svg'],
+section.lead h5 svg[data-marp-fitting='svg'],
+section.lead h6 svg[data-marp-fitting='svg'] {
+    --preserve-aspect-ratio: xMidYMid meet; }
+section.lead p {
+    text-align: center; }
+section.lead blockquote > h1,
+section.lead blockquote > h2,
+section.lead blockquote > h3,
+section.lead blockquote > h4,
+section.lead blockquote > h5,
+section.lead blockquote > h6,
+section.lead blockquote > p {
+    text-align: left; }
+section.lead blockquote svg[data-marp-fitting='svg']:not([data-marp-fitting-math]) {
+    --preserve-aspect-ratio: xMinYMin meet; }
+section.lead ul > li > p,
+section.lead ol > li > p {
+    text-align: left; }
+section.lead table {
+    margin-left: auto;
+    margin-right: auto; }
+
+section :not(pre)>code {
+    background-color: #309ADA;
+    padding: 5px;
+    color: #50fa7b;
+    border-radius: 5px;
+}
+
+section pre, section pre>code {
+    border-radius: 5px;
+    /*padding: 10px;*/
+    background-color: white;
+    color: #444;
+    line-height: 1.35;
+    font-size: 30px;
+}
+
+section pre {
+    padding: 5px 10px;
+}
+
+header,
+footer,
+section::after {
+    box-sizing: border-box;
+    font-size: 66%;
+    height: 70px;
+    line-height: 50px;
+    overflow: hidden;
+    padding: 10px 25px;
+    position: absolute; }
+
+header {
+    left: 0;
+    right: 0;
+    top: 0; }
+
+footer {
+    left: 0;
+    right: 0;
+    bottom: 0; }
+
+section::after {
+    right: 0;
+    bottom: 0;
+    font-size: 80%; }
+
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
