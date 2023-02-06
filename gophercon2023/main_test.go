@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
 	"github.com/brianvoe/gofakeit/v6"
 	"os"
@@ -34,15 +33,10 @@ func Benchmark_buffers(b *testing.B) {
 
 		var total int
 		for i := 0; i < b.N; i++ {
-			f.Seek(0, 0)
-			scanner := bufio.NewScanner(f)
-			total = 0
-			for scanner.Scan() {
-				total += strings.Count(scanner.Text(), searchFor)
-			}
+			total, err = count(f, searchFor)
 
-			if scanner.Err() != nil {
-				b.Fatal(scanner.Err())
+			if err != nil {
+				b.Fatal(err)
 			}
 			if total != expected {
 				b.Fatal(total, expected)
