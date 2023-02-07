@@ -142,6 +142,12 @@ type Reader interface {
 ```
 
 ---
+## Pass on a buffer instead of returning it
+- Allocations are expensive operation that occurs when move up in stack
+- Allocations have additional cost in GC cycles
+- Using external buffer for read allows re-use of memory and save allocations
+
+---
 
 ### Well known successors:
 ```go
@@ -160,12 +166,6 @@ for {
 	else { doSomething(obj) }
 }
 ```
-
----
-## You can use your own buffer
-- Allocations are expensive operation that occurs when ref moves up in stack
-- Allocations have additional cost in GC cycles
-- Using external buffer for read allows re-use of memory and save allocations
 
 ---
 ## Example
