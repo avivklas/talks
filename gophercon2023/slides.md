@@ -29,7 +29,7 @@ Part of the application that runs significantly frequent
 <!-- _class: lead -->
 ### Examples
 ---
-### Interfaces vs. Cast (1)
+### Interfaces vs. type assertion (1)
 ```go
 type Shape interface {
     Area() float64
@@ -44,7 +44,7 @@ func (r Rectangle) Area() float64 {
 }
 ```
 ---
-### Interfaces vs. Cast (2)
+### Interfaces vs. type assertion (2)
 
 ```go
 func Benchmark_interface(b *testing.B) {
@@ -55,7 +55,7 @@ func Benchmark_interface(b *testing.B) {
 }
 ```
 ```go
-func Benchmark_cast(b *testing.B) {
+func Benchmark_type_assertion(b *testing.B) {
     var shape Shape = Rectangle{4, 2}
     for i := 0; i < b.N; i++ {
         if rec, ok := shape.(Rectangle); ok {
@@ -68,8 +68,8 @@ func Benchmark_cast(b *testing.B) {
 <!-- _class: lead -->
 ### Results
 ```shell
-Benchmark_interface-8    742840539      1.493 ns/op
-Benchmark_cast-8         1000000000     0.2912 ns/op
+Benchmark_interface-8       742840539      1.493 ns/op
+Benchmark_type_assertion-8  1000000000     0.2912 ns/op
 ```
 ---
 ### Concurrency: Mutex vs. chan (1)
