@@ -5,6 +5,7 @@ size: 16:9
 ---
 <!-- _class: lead -->
 # Using HashiCorp Raft to distribute data between nodes when a database server is not an option
+![image](https://github.com/avivklas/talks/assets/6282578/762747e0-46b4-4d38-b006-c857ebfa6db2)
 
 ---
 
@@ -18,7 +19,10 @@ size: 16:9
 Our solution:
 - Requires no inbound connection to your subnets
 - Can operate in air-gapped networks
-- Add no latency 
+- Add no latency
+
+  ![image](https://github.com/avivklas/talks/assets/6282578/3e97de60-aceb-43de-bf9e-4abebb1e1d88)
+
 
 ---
 
