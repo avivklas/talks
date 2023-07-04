@@ -71,3 +71,21 @@ img[alt~="center"] {
 # Increment the counter
 
 ![center](img_4.png)
+
+---
+# What is Raft and how does it succeed so well?
+- A log data structure is the easiest to replicate
+- It leaves it up to you to implement the state machine that applies the transactions it replicates for you
+
+![w:620px center](img_6.png)
+
+---
+
+<!-- _class: lead -->
+
+# Q&A
+
+---
+
+<!-- _class: lead -->
+# Thank you <3
