@@ -41,46 +41,15 @@ img[alt~="center"] {
   - encryption keys need to be pre-shared among the nodes ("authenticated encryption")
   - encrypted tokens are stored within the client side (we use cookies) and are tamper-proof
 
+---
+
 # Session Management - Example
 ```go
-type State struct {
-	Value string
-}
+// Opener describes an authenticated-encryption with associated-data (AEAD) key.
+type Opener interface{ Open(from []byte, to interface) ([]byte, error) }
 
-func Set(w http.ResponseWriter, r *http.Request) {
-	s := State{
-		Value: "foo",
-	}
-
-	b, err := envelope.Seal(system.Keys.Sessions, s)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	http.SetCookie(w, &http.Cookie{
-		Name:  "cyolo-sid",
-		Value: b,
-	})
-}
-
-func Get(w http.ResponseWriter, r *http.Request) {
-	c, err := r.Cookie("cyolo-sid")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusForbidden)
-		return
-	}
-
-	s := State{}
-
-	if err = envelope.Open(system.Keys.Sessions, c.Value, &s); err != nil {
-		http.Error(w, err.Error(), http.StatusForbidden)
-		return
-	}
-	
-	w.Header().Set("Content-Type", "text/plain")
-	_, _ = io.WriteString(w, s.Value) // foo
-}
+// Sealer describes an authenticated-encryption with associated-data (AEAD) key.
+type Sealer interface{ Seal(from interface) (to []byte) }
 ```
 
 ![stateless cookie](cookie.png)
