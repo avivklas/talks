@@ -13,13 +13,11 @@ img[alt~="center"] {
 ![center](https://github.com/avivklas/talks/assets/6282578/762747e0-46b4-4d38-b006-c857ebfa6db2)
 
 ---
-
 # Who are these guys and why can't they use a database server
 - We are a Zero Trust Network Access (ZTNA) company
 - Our mission is to isolate our customers' private networks and provide network access to it by identifying objects only
 
 ---
-
 # Total isolation - the only solution
 - Requires no inbound connection to your subnets
 - Can operate in air-gapped networks
@@ -27,36 +25,34 @@ img[alt~="center"] {
 
   ![center](https://github.com/avivklas/talks/assets/6282578/3e97de60-aceb-43de-bf9e-4abebb1e1d88)
 
-
 ---
-
 # Problems we face
 - Customer may have multiple networks (which means we need multiple connectors)
 - Customer may want HA (which means we need multiple connectors per network)
 - Customer networks are not always inter-connected (which means we cannot just use a shared database)
 
 ---
+# Session Management
+- problem:
+  - users need to be authenticated and have their session state needs to be maintained across nodes
 
-<!-- _class: lead -->
-# Design Patterns
+- solution:
+  - encrypted state tokens allow each node to read and modify the session state securely
+  - encryption keys need to be pre-shared among the nodes (we can also leverage PKI)
+  - encrypted tokens are stored within the client side (we use cookies) and are tamper-proof
 
----
-
-# Stateless tokens 
-- Requires a shared-secret between the nodes (or even PKI)
-- Requires a client-side store (such as cookies or javascript)
-- Each node can read/write state securely and easily
-<br />
-<br />
-![center](img_2.png)
+![stateless cookie](cookie.png)
 
 ---
-  
-## "Sticky" transactions
-- Requires a method of "calling" a node directly
-- Best for managing a resource that is only available on one node
- 
---- 
+# Rendezvous Points
+- problem:
+  - some transactions require interaction between multiple actors
+  - examples: MFA links, workflows and things that start in a browser and end in a different client
+- solution:
+  - sticky routing
+  - host identifiers may be used as keys for sticky routing ("app-1.cyolo.io" or "app-2.cyolo.io" vs "app.cyolo.io")
+
+---
 ## Raft-based data replication
 - Highly consistent, highly available
 - Can be used in our network infrastructure
