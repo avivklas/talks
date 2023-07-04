@@ -45,10 +45,12 @@ img[alt~="center"] {
 
 # Session Management - Example
 ```go
-// Opener uses an Authenticated Encryption (AE) key to unmarshal bytes into the given pointer.
+package envelope
+
+// Opener is means to use an Authenticated Encryption (AE) key to unmarshal bytes into a golang struct.
 type Opener interface{ Open(from []byte, to interface{}) error }
 
-// Sealer uses an Authenticated Encryption (AE) key to marshal the given pointer into byte-form.
+// Sealer is means to use an Authenticated Encryption (AE) key to marshal a given golang struct into tamper-proof bytes.
 type Sealer interface{ Seal(from interface{}) (to []byte, err error) }
 ```
 
