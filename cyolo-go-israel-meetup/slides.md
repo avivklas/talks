@@ -45,11 +45,11 @@ img[alt~="center"] {
 
 # Session Management - Example
 ```go
-// Opener describes an authenticated-encryption with associated-data (AEAD) key.
-type Opener interface{ Open(from []byte, to interface) ([]byte, error) }
+// Opener uses an Authenticated Encryption (AE) key to unmarshal bytes into the given pointer.
+type Opener interface{ Open(from []byte, to interface{}) error }
 
-// Sealer describes an authenticated-encryption with associated-data (AEAD) key.
-type Sealer interface{ Seal(from interface) (to []byte) }
+// Sealer uses an Authenticated Encryption (AE) key to marshal the given pointer into byte-form.
+type Sealer interface{ Seal(from interface{}) (to []byte, err error) }
 ```
 
 ![stateless cookie](cookie.png)
