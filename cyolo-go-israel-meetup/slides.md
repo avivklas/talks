@@ -54,7 +54,7 @@ type Opener interface{ Open(from []byte, to interface{}) error }
 type Sealer interface{ Seal(from interface{}) (to []byte, err error) }
 ```
 
-![stateless cookie](cookie.png)
+![stateless cookie](img_2.png)
 
 ---
 # Rendezvous Points
