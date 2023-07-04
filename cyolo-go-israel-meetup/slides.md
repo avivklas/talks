@@ -41,6 +41,47 @@ img[alt~="center"] {
   - encryption keys need to be pre-shared among the nodes (we can also leverage PKI)
   - encrypted tokens are stored within the client side (we use cookies) and are tamper-proof
 
+# Session Management - Example
+```go
+type State struct {
+	Value string
+}
+
+func Set(w http.ResponseWriter, r *http.Request) {
+	s := State{
+		Value: "my-value",
+	}
+
+	b, err := envelope.Seal(system.Keys.Sessions, s)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	http.SetCookie(w, &http.Cookie{
+		Name:  "cyolo-sid",
+		Value: b,
+	})
+}
+
+func Get(w http.ResponseWriter, r *http.Request) {
+	c, err := r.Cookie("cyolo-sid")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusForbidden)
+		return
+	}
+
+	s := State{}
+
+	if err = envelope.Open(system.Keys.Sessions, c.Value, &s); err != nil {
+		http.Error(w, err.Error(), http.StatusForbidden)
+		return
+	}
+
+	_, _ = io.WriteString(w, s.Value)
+}
+```
+
 ![stateless cookie](cookie.png)
 
 ---
