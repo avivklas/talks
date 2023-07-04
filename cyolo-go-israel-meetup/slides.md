@@ -38,7 +38,7 @@ img[alt~="center"] {
 
 - solution:
   - encrypted state tokens allow each node to read and modify the session state securely
-  - encryption keys need to be pre-shared among the nodes (we can also leverage PKI)
+  - encryption keys need to be pre-shared among the nodes ("authenticated encryption")
   - encrypted tokens are stored within the client side (we use cookies) and are tamper-proof
 
 # Session Management - Example
