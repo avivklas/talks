@@ -49,7 +49,7 @@ type State struct {
 
 func Set(w http.ResponseWriter, r *http.Request) {
 	s := State{
-		Value: "my-value",
+		Value: "foo",
 	}
 
 	b, err := envelope.Seal(system.Keys.Sessions, s)
@@ -77,8 +77,9 @@ func Get(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusForbidden)
 		return
 	}
-
-	_, _ = io.WriteString(w, s.Value)
+	
+	w.Header().Set("Content-Type", "text/plain")
+	_, _ = io.WriteString(w, s.Value) // foo
 }
 ```
 
